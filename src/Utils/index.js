@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:5000";
+const baseURL = "https://my-chakra-chat.onrender.com";
 
 const axiosInstance = axios.create({
   baseURL,
