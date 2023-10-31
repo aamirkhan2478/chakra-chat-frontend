@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://my-chakra-chat.onrender.com";
+const baseURL = "https://chakra-chat-backend.vercel.app/";
 
 const axiosInstance = axios.create({
   baseURL,
