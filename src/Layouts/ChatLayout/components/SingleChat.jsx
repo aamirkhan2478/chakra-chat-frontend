@@ -20,7 +20,7 @@ import io from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../assets/animations/typing.json";
 
-const ENDPOINT = "https://chakra-chat-backend.vercel.app";
+const ENDPOINT = import.meta.env.VITE_APP_API_URL;
 var socket, selectedChatCompare;
 
 const SingleChat = ({
@@ -58,23 +58,23 @@ const SingleChat = ({
     socket.on("stop typing", () => setIsTyping(false));
   }, []);
 
-  console.log('add new notification', notification);
+  console.log("add new notification", notification);
   useEffect(() => {
     socket.on("message received", (newMessageReceived) => {
       if (
         !selectedChatCompare ||
         selectedChatCompare._id !== newMessageReceived.chat._id
-        ) {
-          //give notification
-          if (!notification.includes(newMessageReceived)) {
-            setNotification([newMessageReceived, ...notification]);
-            queryClient.invalidateQueries("show-messages");
-          }
-        } else {
-          refetch();
+      ) {
+        //give notification
+        if (!notification.includes(newMessageReceived)) {
+          setNotification([newMessageReceived, ...notification]);
+          queryClient.invalidateQueries("show-messages");
         }
-      });
+      } else {
+        refetch();
+      }
     });
+  });
 
   const toast = useToast();
   const queryClient = useQueryClient();
