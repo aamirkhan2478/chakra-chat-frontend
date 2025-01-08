@@ -20,7 +20,7 @@ import io from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../assets/animations/typing.json";
 
-const ENDPOINT = "https://chakra-chat-backend.vercel.app/";
+const ENDPOINT = import.meta.env.VITE_APP_API_URL;
 var socket, selectedChatCompare;
 
 const SingleChat = ({
@@ -74,7 +74,7 @@ const SingleChat = ({
         refetch();
       }
     });
-  });
+  }, [notification]);
 
   const toast = useToast();
   const queryClient = useQueryClient();
